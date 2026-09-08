@@ -1,0 +1,146 @@
+/* ============================================================
+   NEURAL BIO-TECH — living stylesheet
+   abyssal lab + bioluminescent mint / cyan / violet
+============================================================ */
+:root {
+  --abyss: #020806;
+  --deep: #04120e;
+  --panel: rgba(6, 24, 19, 0.62);
+  --membrane: rgba(10, 34, 27, 0.55);
+  --mint: #2ef2c8;
+  --cyan: #4de3ff;
+  --lime: #b8ff5c;
+  --violet: #9d7bff;
+  --axon: #ff6ad5;
+  --ink: #e9fff4;
+  --muted: #8fb8a8;
+  --faint: rgba(233, 255, 244, 0.55);
+  --line: rgba(46, 242, 200, 0.16);
+}
+
+html { background: var(--abyss); scroll-behavior: smooth; }
+body {
+  background: var(--abyss);
+  color: var(--ink);
+  font-family: "Outfit", system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection { background: rgba(46, 242, 200, 0.35); color: #02120c; }
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: #020806; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2ef2c8, #4de3ff, #9d7bff);
+  border-radius: 99px;
+  border: 2px solid #020806;
+}
+
+.f-display { font-family: "Space Grotesk", sans-serif; }
+.f-serif { font-family: "Instrument Serif", serif; }
+.f-mono { font-family: "IBM Plex Mono", monospace; }
+
+/* ---------- glassy living membrane ---------- */
+.membrane {
+  background: linear-gradient(160deg, rgba(12, 44, 34, 0.72), rgba(3, 12, 10, 0.78));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 0 1px rgba(46, 242, 200, 0.05), 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+.membrane-soft {
+  background: rgba(6, 22, 17, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(46, 242, 200, 0.12);
+}
+
+.bio-text {
+  background: linear-gradient(100deg, #eafff6 5%, #2ef2c8 38%, #4de3ff 62%, #9d7bff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glow-mint { text-shadow: 0 0 12px rgba(46, 242, 200, 0.8), 0 0 42px rgba(46, 242, 200, 0.35); }
+.glow-cyan { text-shadow: 0 0 12px rgba(77, 227, 255, 0.8), 0 0 42px rgba(77, 227, 255, 0.3); }
+
+/* ---------- organic motion ---------- */
+@keyframes breathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.035) translateY(-6px); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(26px, -30px) scale(1.08); }
+  66% { transform: translate(-20px, 18px) scale(0.96); }
+}
+@keyframes morph {
+  0%, 100% { border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%; }
+  33% { border-radius: 45% 55% 42% 58% / 58% 42% 58% 42%; }
+  66% { border-radius: 52% 48% 60% 40% / 42% 58% 42% 58%; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes dash-flow { to { stroke-dashoffset: -40; } }
+@keyframes ecg { 0% { stroke-dashoffset: 320; } 100% { stroke-dashoffset: 0; } }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes blink-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes shimmer-x { to { background-position: 200% center; } }
+
+.animate-breathe { animation: breathe 6s ease-in-out infinite; }
+.animate-drift { animation: drift 14s ease-in-out infinite; }
+.animate-morph { animation: morph 12s ease-in-out infinite; }
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-blink-soft { animation: blink-soft 1.6s ease-in-out infinite; }
+
+.axon-flow {
+  stroke-dasharray: 6 8;
+  animation: dash-flow 1.4s linear infinite;
+}
+
+/* petri dot grid */
+.petri {
+  background-image: radial-gradient(rgba(46, 242, 200, 0.14) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black 25%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, black 25%, transparent 78%);
+}
+
+/* scanline-free organic vignette */
+.bio-vignette {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 42%, transparent 52%, rgba(0, 8, 6, 0.6) 100%);
+}
+.bio-grain {
+  position: fixed; inset: 0; z-index: 41; pointer-events: none; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.caret-bio::after {
+  content: "▍";
+  margin-left: 3px;
+  color: var(--mint);
+  animation: blink-soft 1s step-end infinite;
+}
+
+.cluster-card { transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s, border-color 0.4s; }
+.cluster-card:hover { transform: translateY(-7px); }
+
+.navlink { position: relative; }
+.navlink::after {
+  content: ""; position: absolute; left: 0; bottom: -7px; height: 2px; width: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--mint), var(--cyan), var(--violet));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+}
+.navlink:hover::after, .navlink.active::after { transform: scaleX(1); }
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe, .animate-drift, .animate-morph, .animate-floaty { animation: none; }
+}

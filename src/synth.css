@@ -1,0 +1,111 @@
+/* ==========================================================================
+   SYNTHWAVE RETRO-FUTURE THEME — TOKENS & UTILITIES
+========================================================================== */
+@theme {
+  --font-retro: "Righteous", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-pixel: "Press Start 2P", monospace;
+  --font-crt: "VT323", monospace;
+  --font-body: "Exo", sans-serif;
+}
+
+:root {
+  --sw-bg0: #0b0120;
+  --sw-bg1: #1a0b3c;
+  --sw-magenta: #ff2efd;
+  --sw-cyan: #00f0ff;
+  --sw-yellow: #ffe600;
+  --sw-pink: #fb2576;
+  --sw-sun1: #ffd319;
+  --sw-sun2: #ff901f;
+  --sw-sun3: #ff2975;
+  --sw-plum: #9000a8;
+  --sw-lilac: #c86bff;
+  --ink: #fff6ff;
+  --ghost: rgba(255, 246, 255, 0.55);
+  --ghost-dim: rgba(255, 246, 255, 0.34);
+}
+
+html { background: var(--sw-bg0); scroll-behavior: smooth; }
+body {
+  font-family: "Exo", sans-serif;
+  background: var(--sw-bg0);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+@keyframes scan-roll { from { transform: translateY(0); } to { transform: translateY(100vh); } }
+@keyframes sun-pulse { 0%,100% { opacity: .85 } 50% { opacity: 1 } }
+@keyframes carousel { to { transform: translateX(-50%); } }
+@keyframes blinker { 0%,49% {opacity:1} 50%,100% {opacity:0} }
+@keyframes led-on { 0%,100% {opacity:1} 50% {opacity:.25} }
+@keyframes glitch-1 { 0%{clip:rect(0,auto,0,0)} 10%{clip:rect(24px,9999px,58px,0)} 20%{clip:rect(80px,9999px,116px,0)} 30%{clip:rect(12px,9999px,32px,0)} 40%{clip:rect(60px,9999px,90px,0)} 50%{clip:rect(30px,9999px,64px,0)} 60%{clip:rect(70px,9999px,104px,0)} 70%{clip:rect(20px,9999px,50px,0)} 80%{clip:rect(54px,9999px,86px,0)} 90%{clip:rect(40px,9999px,78px,0)} 100%{clip:rect(0,auto,0,0)} }
+@keyframes float-bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+@keyframes hue-rotate { to { filter: hue-rotate(360deg); } }
+
+/* sunset gradient */
+.sunset {
+  background: linear-gradient(180deg, #200068 0%, var(--sw-pink) 26%, var(--sw-sun3) 42%, var(--sw-sun2) 62%, var(--sw-sun1) 100%);
+}
+
+/* chrome text — classic synthwave metal */
+.chrome {
+  background: linear-gradient(180deg, #cfd3e0 0%, #ffffff 22%, #8ea0c7 40%, #22304a 48%, #6d7fa0 62%, #dbe1ee 78%, #5f6f8e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 0 rgba(255, 41, 117, .55)) drop-shadow(0 12px 18px rgba(0,0,0,.5));
+  -webkit-text-stroke: 1px rgba(255,255,255,.08);
+}
+/* classic three-band synth ribbon logo text */
+.retro {
+  font-family: "Righteous", sans-serif;
+  background: linear-gradient(180deg, var(--sw-cyan) 0%, var(--sw-cyan) 33%, var(--sw-bg0) 34%, var(--sw-bg0) 66%, var(--sw-pink) 67%, var(--sw-pink) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 41, 117, .55)) drop-shadow(0 0 28px rgba(0, 240, 255, .4));
+  -webkit-text-stroke: 1px var(--ink);
+  text-stroke: 1px var(--ink);
+}
+
+.pixel { font-family: "Press Start 2P", monospace; }
+.crtfont { font-family: "VT323", monospace; }
+.orbitron { font-family: "Orbitron", sans-serif; }
+.retrofont { font-family: "Righteous", sans-serif; }
+
+/* CRT scanlines overlay */
+.scanlines {
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,.28) 3px, rgba(0,0,0,0) 4px);
+}
+/* slowly-moving bright scanline */
+.scanbeam {
+  position: fixed; left: 0; right: 0; z-index: 55; pointer-events: none;
+  height: 160px;
+  background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,240,255,.045), rgba(255,41,117,.05), rgba(0,0,0,0));
+  animation: scan-roll 9s linear infinite;
+}
+/* ambient flicker (subtle) */
+.flicker { animation: led-on 4s linear infinite; }
+
+/* glow helpers */
+.glow-magenta { text-shadow: 0 0 8px var(--sw-magenta), 0 0 24px var(--sw-magenta), 0 0 60px var(--sw-magenta); }
+.glow-cyan { text-shadow: 0 0 8px var(--sw-cyan), 0 0 22px var(--sw-cyan); }
+.glow-pink { text-shadow: 0 0 8px var(--sw-pink), 0 0 24px var(--sw-pink); }
+.glow-yellow { text-shadow: 0 0 8px var(--sw-yellow), 0 0 22px var(--sw-yellow); }
+
+/* neon hairline box */
+.nbox { border: 1px solid rgba(255, 41, 117, .35); box-shadow: 0 0 14px rgba(0,240,255,.12), inset 0 0 18px rgba(255,41,117,.06), 0 0 0 1px rgba(0,240,255,.06); }
+.nbox-cyan { border: 1px solid rgba(0,240,255,.35); }
+
+/* grid utility — set size via inline style */
+.neon-plain {
+  background-image: linear-gradient(rgba(0,240,255,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,.28) 1px, transparent 1px);
+  background-size: 100% 100%;
+}
+.neon-side { perspective: 600px; }
+
+.slide-hint {
+  font-family: "Press Start 2P", monospace;
+  color: var(--ink);
+  text-shadow: 0 0 6px var(--ink), 0 0 18px var(--sw-cyan), -2px 0 var(--sw-pink), 2px 0 var(--sw-cyan);
+}
+.caret::after { content: "▰"; margin-left: 3px; color: var(--sw-magenta); animation: blinker 1s step-end infinite; }

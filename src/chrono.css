@@ -1,0 +1,266 @@
+/* ============================================================
+   CHRONO-SHIFT — ULTRA-PREMIUM HOROLOGICAL THEME
+   Deep obsidian, brushed brass, cyan temporal ticks,
+   holographic warp glass, ripple distortions & shifting layers
+============================================================ */
+:root {
+  --obs: #07070b;
+  --obs-deep: #030306;
+  --obs2: #0f1018;
+  --panel: rgba(18, 19, 28, 0.72);
+  --panel-warp: rgba(22, 24, 38, 0.85);
+  --brass: #e8c96a;
+  --brass-light: #f7e8b8;
+  --brass-dark: #b8923d;
+  --tick: #4de3ff;
+  --tick-glow: rgba(77, 227, 255, 0.55);
+  --amber: #ffb347;
+  --warp-violet: #a855f7;
+  --ink: #f5f0e4;
+  --muted: #a19a8d;
+  --muted-dim: #6d665b;
+  --line: rgba(232, 201, 106, 0.18);
+  --line-cyan: rgba(77, 227, 255, 0.22);
+}
+
+html {
+  background: var(--obs);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--obs);
+  color: var(--ink);
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(232, 201, 106, 0.38);
+  color: #07070b;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #07070b;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e8c96a, #4de3ff);
+  border-radius: 99px;
+  border: 2px solid #07070b;
+}
+
+.f-display { font-family: "Michroma", system-ui, sans-serif; }
+.f-serif { font-family: "Cormorant Garamond", Georgia, serif; }
+.f-mono { font-family: "IBM Plex Mono", monospace; }
+
+/* ---------- Horological Glass & Brass ---------- */
+.glass-c {
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(247, 232, 184, 0.08);
+}
+
+.glass-c-glow {
+  background: linear-gradient(145deg, rgba(24, 25, 36, 0.8), rgba(12, 12, 18, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(232, 201, 106, 0.28);
+  box-shadow: 0 0 45px rgba(232, 201, 106, 0.12), inset 0 0 25px rgba(232, 201, 106, 0.04);
+}
+
+.brass-text {
+  background: linear-gradient(100deg, #fcedc5 0%, #e8c96a 35%, #b98d3a 60%, #f7e8b8 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cyan-text {
+  background: linear-gradient(100deg, #e0fbff 0%, #4de3ff 50%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-brass {
+  text-shadow: 0 0 14px rgba(232, 201, 106, 0.7), 0 0 46px rgba(232, 201, 106, 0.3);
+}
+.glow-cyan {
+  text-shadow: 0 0 12px rgba(77, 227, 255, 0.75), 0 0 36px rgba(77, 227, 255, 0.3);
+}
+
+/* Tick marks ruler */
+.ticks {
+  background-image: repeating-linear-gradient(90deg, rgba(232, 201, 106, 0.32) 0 1px, transparent 1px 14px);
+}
+.ticks-cyan {
+  background-image: repeating-linear-gradient(90deg, rgba(77, 227, 255, 0.26) 0 1px, transparent 1px 14px);
+}
+
+/* ---------- Keyframe Animations ---------- */
+@keyframes chrono-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes chrono-spin-rev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes ripple-wave {
+  0% {
+    transform: scale(0.1);
+    opacity: 0.95;
+    border-width: 3px;
+  }
+  50% {
+    opacity: 0.6;
+    border-width: 2px;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+    border-width: 0.5px;
+  }
+}
+@keyframes ripple-ambient {
+  0% { transform: scale(0.85); opacity: 0.75; }
+  50% { transform: scale(1.15); opacity: 0.35; }
+  100% { transform: scale(0.85); opacity: 0.75; }
+}
+@keyframes marquee-c {
+  to { transform: translateX(-50%); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes blink-c {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-blink-c { animation: blink-c 1.4s ease-in-out infinite; }
+.animate-ripple-ambient { animation: ripple-ambient 4s ease-in-out infinite; }
+
+/* Ripple waves on open capsule */
+.ripple-ring-1 {
+  position: absolute; inset: 0; margin: auto; border-radius: 50%;
+  border: 2px solid rgba(232, 201, 106, 0.7);
+  animation: ripple-wave 1.5s cubic-bezier(0.1, 0.7, 0.3, 1) infinite;
+  pointer-events: none;
+}
+.ripple-ring-2 {
+  position: absolute; inset: 0; margin: auto; border-radius: 50%;
+  border: 1.5px solid rgba(77, 227, 255, 0.65);
+  animation: ripple-wave 1.5s cubic-bezier(0.1, 0.7, 0.3, 1) infinite;
+  animation-delay: 0.35s;
+  pointer-events: none;
+}
+.ripple-ring-3 {
+  position: absolute; inset: 0; margin: auto; border-radius: 50%;
+  border: 1px solid rgba(168, 85, 247, 0.55);
+  animation: ripple-wave 1.5s cubic-bezier(0.1, 0.7, 0.3, 1) infinite;
+  animation-delay: 0.7s;
+  pointer-events: none;
+}
+
+/* Time Capsule Card & Latch */
+.capsule {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s, border-color 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.capsule:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(232, 201, 106, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(232, 201, 106, 0.18);
+}
+.capsule .capsule-hover-ripple {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 80px; height: 80px;
+  margin: -40px 0 0 -40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 201, 106, 0.6);
+  opacity: 0;
+  transform: scale(0.3);
+  pointer-events: none;
+}
+.capsule:hover .capsule-hover-ripple {
+  animation: ripple-wave 1.2s ease-out infinite;
+}
+
+.latch {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: left center;
+}
+.capsule:hover .latch {
+  transform: rotate(45deg);
+}
+
+/* Caret */
+.caret-c::after {
+  content: "▍";
+  margin-left: 3px;
+  color: var(--brass);
+  animation: blink-c 1s step-end infinite;
+}
+
+/* Nav underline */
+.navlink {
+  position: relative;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  height: 2px;
+  width: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--brass), var(--tick));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.navlink:hover::after, .navlink.active::after {
+  transform: scaleX(1);
+}
+
+/* Scrubber track cursor */
+.scrub-track { touch-action: none; }
+.scrub-cursor { cursor: ew-resize; }
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { scrollbar-width: none; }
+
+/* Vignette & Grain */
+.c-vignette {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 42%, transparent 48%, rgba(3, 3, 6, 0.68) 100%);
+}
+.c-grain {
+  position: fixed; inset: 0; z-index: 41; pointer-events: none; opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ripple distortion overlay on active capsule */
+.warp-distortion {
+  background: radial-gradient(circle at center, rgba(232, 201, 106, 0.12) 0%, rgba(77, 227, 255, 0.08) 40%, transparent 70%);
+  filter: contrast(110%) brightness(105%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-floaty, .ripple-ring-1, .ripple-ring-2, .ripple-ring-3 {
+    animation: none;
+  }
+}
